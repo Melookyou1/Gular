@@ -3,138 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Center the video horizontally at the top */
-        .video-container {
-            text-align: center;  /* Centers the iframe horizontally */
-            margin-top: 20px;    /* Adds some space from the top */
-        }
-    </style>
-</head>
-<body>
-    <h1 style="text-align: center;">how to get script</h1>
-
-    <div class="video-container">
-        <!-- Embed YouTube Video -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
-        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
-        clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-    <title>Countdown with Next Button</title>
-     <style>
-        /* Frame styling */
-        .frame {
-            background-color: #444; /* Dark background for the frame */
-            width: 300px;
-            height: 250px;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 100px auto; /* Center the frame on the page */
+    <title>Screen Lock Configuration</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f7;
         }
 
-        /* Heading style */
-        .frame h2 {
+        /* Header Navigation */
+        .header {
+            background-color: #2d2d2d;
             color: white;
-            margin-bottom: 20px;
-            font-family: Phantomsans, sans-serif;
-            font-size: 30px;
-        }
-
-        /* Button styling */
-        .button-64 {
-            align-items: center;
-            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-            border: 0;
-            border-radius: 8px;
-            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-            box-sizing: border-box;
-            color: #FFFFFF;
+            padding: 10px 20px;
             display: flex;
-            font-family: Phantomsans, sans-serif;
-            font-size: 20px;
-            justify-content: center;
-            line-height: 1em;
-            min-width: 140px;
-            padding: 0px; /* Remove extra padding */
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header .nav-links a {
+            color: #ffffff;
             text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            white-space: nowrap;
-            cursor: pointer;
-            margin-bottom: 20px; /* Space between buttons */
+            font-size: 14px;
         }
 
-        .button-64:active,
-        .button-64:hover {
-            outline: 0;
+        /* Sidebar */
+        .sidebar {
+            background-color: #ffffff;
+            width: 250px;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            height: calc(100vh - 60px); /* Adjust for header height */
+            position: fixed;
+            top: 60px;
+            left: 0;
+            color: #5b5b5b;
         }
 
-        .button-64 span {
-            background-color: rgb(5, 6, 45);
-            padding: 16px 24px; /* Adjust the padding inside the button */
-            border-radius: 6px;
+        .sidebar h3 {
+            margin-top: 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0070c9;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .sidebar ul li strong {
+            color: #323c46;
+        }
+
+        .sidebar ul li ul {
+            padding-left: 15px;
+        }
+
+        .sidebar ul li ul li {
+            font-size: 13px;
+            color: #4a4a4a;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+            background-color: #f5f5f7;
+            min-height: calc(100vh - 60px); /* Adjust for header height */
+        }
+
+        .main-content h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #323c46;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #4a4a4a;
+        }
+
+        .form-section input[type="text"],
+        .form-section input[type="number"] {
+            padding: 8px;
             width: 100%;
-            transition: 300ms;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;  /* Rounded corners */
+            font-size: 14px;
+            color: #333;
+            background-color: #f7f7f7;  /* Light background color */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);  /* Inner shadow */
         }
 
-        .button-64:hover span {
-            background: none;
+        input[type="number"]:disabled {
+            background-color: #f0f0f0;
+            color: #999;
         }
 
-        @media (min-width: 768px) {
-            .button-64 {
-                font-size: 24px;
-                min-width: 196px;
-            }
+        .form-section input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            border-left: 4px solid #0070c9;
+            padding-left: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Custom button styles */
+        input[type="number"]:disabled {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
+    <!-- Header Navigation -->
+    <div class="header">
+        <div class="logo">Jamf PRO</div>
+        <div class="nav-links">
+            <a href="#">Computers</a>
+            <a href="#">Devices</a>
+            <a href="#">Users</a>
+        </div>
+    </div>
 
-<!-- Frame containing buttons -->
-<div class="frame">
-    <h2>how to get script</h2>
-    
-    <!-- Wait Button -->
-    <button id="startButton" class="button-64"><span>Wait 10 sec</span></button>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Configuration Profiles</h3>
+        <ul>
+            <li><strong>Computers</strong></li>
+            <ul>
+                <li>Search Inventory</li>
+                <li>Search Volume Content</li>
+                <li>Licensed Software</li>
+            </ul>
+            <li><strong>Content Management</strong></li>
+            <ul>
+                <li>Policies</li>
+                <li>Configuration Profiles</li>
+                <li>Restricted Software</li>
+                <li>PreStage Imaging</li>
+                <li>Patch Management</li>
+            </ul>
+            <li><strong>Groups</strong></li>
+            <ul>
+                <li>Smart Computer Groups</li>
+                <li>Static Computer Groups</li>
+                <li>Classes</li>
+            </ul>
+            <li><strong>Enrollment</strong></li>
+            <ul>
+                <li>Enrollment Invitations</li>
+                <li>PreStage Enrollments</li>
+            </ul>
+        </ul>
+    </div>
 
-    <!-- Next Button -->
-    <button id="nextButton" class="button-64" disabled><span>Next</span></button>
-</div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>Screen Lock Configuration Test</h2>
 
-<script>
-    document.getElementById('startButton').addEventListener('click', function() {
-        let timeLeft = 10;
-        const startButton = this;
-        const nextButton = document.getElementById('nextButton');
-        
-        startButton.disabled = true;  // Disable the start button
-        nextButton.disabled = true;   // Ensure next button stays disabled
+        <div class="form-section">
+            <h3>Options</h3>
+            <div class="form-group">
+                <label><input type="checkbox" id="enable-console-login"> Enable console login</label>
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="enable-fast-switching"> Enable Fast User Switching</label>
+            </div>
+            <div class="form-group">
+                <label for="logout-after">Log out users after:</label>
+                <input type="number" id="logout-after" placeholder="Minutes of Inactivity (minimum 3 minutes)" min="0">
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="start-screensaver"> Start screen saver after:</label>
+                <input type="number" id="screensaver-time" value="20" disabled> Minutes of Inactivity
+                <div class="highlight">
+                    Use Screen Saver Module At Path: <br>
+                    /System/Library/Screen Savers/Flurry.saver
+                </div>
+            </div>
+        </div>
+    </div>
 
-        startButton.querySelector('span').innerHTML = "Wait " + timeLeft + " sec";  // Initial button label with countdown
+    <!-- JavaScript -->
+    <script>
+        // Handle enabling/disabling the screensaver input
+        const screensaverCheckbox = document.getElementById('start-screensaver');
+        const screensaverTimeInput = document.getElementById('screensaver-time');
 
-        const timer = setInterval(function() {
-            timeLeft -= 1;
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                startButton.querySelector('span').innerHTML = "Time's up!";
-                nextButton.disabled = false;  // Enable the next button
+        screensaverCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                screensaverTimeInput.disabled = false;
             } else {
-                startButton.querySelector('span').innerHTML = "Wait " + timeLeft + " sec";
+                screensaverTimeInput.disabled = true;
             }
-        }, 1000);
-    });
+        });
 
-    document.getElementById('nextButton').addEventListener('click', function() {
-        window.open('google.com', '_blank');  // Open the URL in a new tab
-    });
-</script>
-
+        // Optional: Handle enabling/disabling other inputs based on checkboxes
+    </script>
 </body>
 </html>
