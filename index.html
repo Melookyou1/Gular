@@ -12,7 +12,6 @@
             background-color: #f5f5f7;
         }
 
-        /* Header Navigation */
         .header {
             background-color: #2d2d2d;
             color: white;
@@ -39,13 +38,12 @@
             font-size: 14px;
         }
 
-        /* Sidebar */
         .sidebar {
             background-color: #ffffff;
             width: 250px;
             padding: 20px;
             border-right: 1px solid #ddd;
-            height: calc(100vh - 60px); /* Adjust for header height */
+            height: calc(100vh - 60px);
             position: fixed;
             top: 60px;
             left: 0;
@@ -74,21 +72,11 @@
             color: #323c46;
         }
 
-        .sidebar ul li ul {
-            padding-left: 15px;
-        }
-
-        .sidebar ul li ul li {
-            font-size: 13px;
-            color: #4a4a4a;
-        }
-
-        /* Main content */
         .main-content {
             margin-left: 270px;
             padding: 20px;
             background-color: #f5f5f7;
-            min-height: calc(100vh - 60px); /* Adjust for header height */
+            min-height: calc(100vh - 60px);
         }
 
         .main-content h2 {
@@ -122,24 +110,15 @@
             box-sizing: border-box;
             margin-bottom: 10px;
             border: 1px solid #e0e0e0;
-            border-radius: 8px;  /* Rounded corners */
+            border-radius: 8px;
             font-size: 14px;
             color: #333;
-            background-color: #f7f7f7;  /* Light background color */
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);  /* Inner shadow */
-        }
-
-        input[type="number"]:disabled {
-            background-color: #f0f0f0;
-            color: #999;
+            background-color: #f7f7f7;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .form-section input[type="checkbox"] {
             margin-right: 10px;
-        }
-
-        .form-section .form-group {
-            margin-bottom: 20px;
         }
 
         .highlight {
@@ -150,15 +129,75 @@
             color: #333;
         }
 
-        /* Custom button styles */
-        input[type="number"]:disabled {
-            background-color: #f0f0f0;
+        .login-container {
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .login-container h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .login-container label {
+            font-size: 14px;
+            color: #4a4a4a;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0070c9;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #005bb5;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+            display: none;
         }
     </style>
 </head>
 <body>
+
+    <!-- Login Container -->
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Submit</button>
+            <div class="error-message" id="error-message">Incorrect password</div>
+        </form>
+    </div>
+
     <!-- Header Navigation -->
-    <div class="header">
+    <div class="header" id="header" style="display: none;">
         <div class="logo">Jamf PRO</div>
         <div class="nav-links">
             <a href="#">Computers</a>
@@ -168,7 +207,7 @@
     </div>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar" style="display: none;">
         <h3>Configuration Profiles</h3>
         <ul>
             <li><strong>Computers</strong></li>
@@ -200,7 +239,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+    <div class="main-content" id="mainContent" style="display: none;">
         <h2>Screen Lock Configuration Test</h2>
 
         <div class="form-section">
@@ -228,19 +267,27 @@
 
     <!-- JavaScript -->
     <script>
-        // Handle enabling/disabling the screensaver input
-        const screensaverCheckbox = document.getElementById('start-screensaver');
-        const screensaverTimeInput = document.getElementById('screensaver-time');
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
 
-        screensaverCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                screensaverTimeInput.disabled = false;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (password === 'namdej') {
+                // Show the main content and hide login
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('header').style.display = 'flex';
+                document.getElementById('sidebar').style.display = 'block';
+                document.getElementById('mainContent').style.display = 'block';
             } else {
-                screensaverTimeInput.disabled = true;
+                errorMessage.style.display = 'block'; // Show the error message
+                alert("Password incorrect");
             }
         });
 
-        // Optional: Handle enabling/disabling other inputs based on checkboxes
+        // Show login container initially
+        document.getElementById('loginContainer').style.display = 'flex';
     </script>
+
 </body>
 </html>
